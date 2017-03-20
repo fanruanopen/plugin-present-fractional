@@ -153,7 +153,7 @@ public class FractionalGraphHelper {
      * @param y   the X coordinates.
      *            should be rendered.
      */
-    public static void drawString(Graphics g, Position position, String str, int w, int h, double x, double y) {
+    public static void drawString(Graphics g, FractionalAttr attr, String str, int w, int h, double x, double y) {
         if (StringUtils.isBlank(str)) {
             return;
         }
@@ -185,11 +185,13 @@ public class FractionalGraphHelper {
             }
             FractionalGraphHelper.drawNormalString(g, str, x, y);//draw string.
             if (frFont.getUnderline() != Constants.LINE_NONE) {
-                if (position == Position.BOTTOM) {
-                    double bot = h - 0.5;
-                    FractionalGraphHelper.drawLine(g, 10, bot, w - 10, bot, frFont.getUnderline());
+                double hgap = attr.getHgap();
+                double vgap = attr.getVgap();
+                if (attr.getPosition() == Position.BOTTOM) {
+                    double bot = h - vgap;
+                    FractionalGraphHelper.drawLine(g, hgap - 3, bot, w - hgap, bot, frFont.getUnderline());
                 } else {
-                    FractionalGraphHelper.drawLine(g, 10, 0.5, w - 10, 0.5, frFont.getUnderline());
+                    FractionalGraphHelper.drawLine(g, hgap - 3, vgap, w - hgap, vgap, frFont.getUnderline());
                 }
                 //double bot = y + fm.getDescent() + FractionalGraphHelper.getLineStyleSize(frFont.getUnderline()) + 6;
 
@@ -274,7 +276,7 @@ public class FractionalGraphHelper {
     /**
      * 画字符串.
      */
-    public static void drawString2(Graphics g, Position position, String str, double x, double y, int width) {
+    public static void drawString2(Graphics g, FractionalAttr attr, String str, double x, double y, int width) {
         if (StringUtils.isBlank(str)) {
             return;
         }

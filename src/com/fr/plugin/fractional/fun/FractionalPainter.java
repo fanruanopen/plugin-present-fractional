@@ -26,6 +26,6 @@ public class FractionalPainter extends AbstractPainter {
         font = font.applyUnderline(attr.getWeight().toStyleLine());
         g2d.setFont(font);
         style = style.deriveFRFont(font);
-        FractionalBaseUtils.drawStringStyleInRotation(g2d, attr.getPosition(), width, height, text, style, 96);
+        FractionalBaseUtils.drawStringStyleInRotation(g2d, attr, width, height, text, style, 96);
     }
 }

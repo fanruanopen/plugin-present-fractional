@@ -143,7 +143,7 @@ public class FractionalBaseUtils {
      * @param style      样式
      * @param resolution 屏幕分辨率
      */
-    public static void drawStringStyleInRotation(Graphics2D g2d, Position position, int width, int height, String text, Style style, int resolution) {
+    public static void drawStringStyleInRotation(Graphics2D g2d, FractionalAttr attr, int width, int height, String text, Style style, int resolution) {
         if (StringUtils.isBlank(text)) {
             return;
         }
@@ -160,9 +160,9 @@ public class FractionalBaseUtils {
         int horizontalAlignment = com.fr.base.BaseUtils.getAlignment4Horizontal(style, text);
 
         if (style.getRotation() != 0 && style.getVerticalText() == Style.HORIZONTALTEXT) {
-            drawHorizontalText(g2d, position, text, font, style, width, height, horizontalAlignment);
+            drawHorizontalText(g2d, attr, text, font, style, width, height, horizontalAlignment);
         } else {
-            drawRotationText(g2d, position, text, style, font, width, height, horizontalAlignment, resolution);
+            drawRotationText(g2d, attr, text, style, font, width, height, horizontalAlignment, resolution);
         }
 
         g2d.setFont(oldFont);
@@ -178,7 +178,7 @@ public class FractionalBaseUtils {
         return font;
     }
 
-    private static void drawHorizontalText(Graphics2D g2d, Position position, String text, Font rfont, Style style, double width, double height, int horizontalAlignment) {
+    private static void drawHorizontalText(Graphics2D g2d, FractionalAttr attr, String text, Font rfont, Style style, double width, double height, int horizontalAlignment) {
         AffineTransform trans = new AffineTransform();
         trans.rotate(-Math.toRadians(style.getRotation()));
 
@@ -210,7 +210,7 @@ public class FractionalBaseUtils {
         FractionalGraphHelper.drawRotatedString(g2d, text, textX, textY, -style.getRotation());
     }
 
-    private static void drawRotationText(Graphics2D g2d, Position position, String text, Style style, Font rfont, int width, int height, int horizontalAlignment, int resolution) {
+    private static void drawRotationText(Graphics2D g2d, FractionalAttr attr, String text, Style style, Font rfont, int width, int height, int horizontalAlignment, int resolution) {
 //		FontMetrics cellFM = g2d.getFontMetrics();
         FontMetrics cellFM = FractionalGraphHelper.getFontMetrics(rfont);
         java.util.List lineTextList = FractionalBaseUtils.getLineTextList(text, style, rfont, height, width, resolution);
@@ -246,11 +246,11 @@ public class FractionalBaseUtils {
             int textX = calculateTextX(style, rfont, paint_str, width, maxWidth, horizontalAlignment);
 
             if (isAutomaticLine(style, horizontalAlignment, textLonger)) {//自动换行时
-                FractionalGraphHelper.drawString2(g2d, position, paint_str, textX, textY, width);
+                FractionalGraphHelper.drawString2(g2d, attr, paint_str, textX, textY, width);
             } else if (isDistributeAlign(style, horizontalAlignment, textLonger)) {
-                drawTextWihenDistributeAlign(g2d, position, paint_str, cellFM, width, height, textX, textY);
+                drawTextWihenDistributeAlign(g2d, attr, paint_str, cellFM, width, height, textX, textY);
             } else {  //这里不能删除
-                FractionalGraphHelper.drawString(g2d, position, paint_str, width, height, textX, textY);
+                FractionalGraphHelper.drawString(g2d, attr, paint_str, width, height, textX, textY);
             }
             textY += textHeight;// TODO 只增加了Y.
             textY += PT.pt2pix(style.getLineSpacing(), resolution);
@@ -331,7 +331,7 @@ public class FractionalBaseUtils {
                 && textLonger;
     }
 
-    private static void drawTextWihenDistributeAlign(Graphics2D g2d, Position position, String paint_str, FontMetrics cellFM, int width, int height, int textX, int textY) {
+    private static void drawTextWihenDistributeAlign(Graphics2D g2d, FractionalAttr attr, String paint_str, FontMetrics cellFM, int width, int height, int textX, int textY) {
         // 单行显示时的分散对齐实现
         //串长大于列宽时需要特别处理：只从中抽取合适长度的串值显示
         String lineText = paint_str;// 分行显示时第i行的内容，但是也可能单行
@@ -343,7 +343,7 @@ public class FractionalBaseUtils {
                 char[] tmpChars = new char[128];//可能因为不足而危险/出错
                 strBuff.getChars(0, charIndex - 1, tmpChars, 0);//获得append之前构造的那个串值
                 tmpChars[charIndex] = '\0';//串结束标志，用于消除串尾乱码，但是不起作用，不知怎的。
-                FractionalGraphHelper.drawString(g2d, position, new String(tmpChars), width, height, textX, textY);
+                FractionalGraphHelper.drawString(g2d, attr, new String(tmpChars), width, height, textX, textY);
                 break;//只画一行，画完就退出
             }
         }

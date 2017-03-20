@@ -13,6 +13,8 @@ public class FractionalAttr implements XMLable {
 
     private Weight weight = Weight.MEDIUM;
     private Position position = Position.BOTTOM;
+    private double hgap = 5;
+    private double vgap = 0.5;
 
 
     public FractionalAttr() {
@@ -35,6 +37,22 @@ public class FractionalAttr implements XMLable {
         return position;
     }
 
+    public double getHgap() {
+        return hgap;
+    }
+
+    public void setHgap(double hgap) {
+        this.hgap = hgap;
+    }
+
+    public double getVgap() {
+        return vgap;
+    }
+
+    public void setVgap(double vgap) {
+        this.vgap = vgap;
+    }
+
     @Override
     public void readXML(XMLableReader reader) {
         if (reader.isChildNode()) {
@@ -42,6 +60,8 @@ public class FractionalAttr implements XMLable {
             if ("Attr".equals(tagName)) {
                 weight = Weight.parse(reader.getAttrAsInt("weight", 1));
                 position = Position.parse(reader.getAttrAsInt("position", 0));
+                hgap = reader.getAttrAsDouble("hgap", 5);
+                vgap = reader.getAttrAsDouble("vgap", 0.5);
             }
         }
     }
@@ -51,6 +71,8 @@ public class FractionalAttr implements XMLable {
         writer.startTAG("Attr");
         writer.attr("weight", weight.toInt());
         writer.attr("position", position.toInt());
+        writer.attr("hgap", hgap);
+        writer.attr("vgap", vgap);
         writer.end();
     }
 
@@ -59,6 +81,8 @@ public class FractionalAttr implements XMLable {
         FractionalAttr cloned = (FractionalAttr) super.clone();
         cloned.weight = weight;
         cloned.position = position;
+        cloned.hgap = hgap;
+        cloned.vgap = vgap;
         return cloned;
     }
 }
