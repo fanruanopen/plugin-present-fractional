@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><plugin>
+    <id>com.fr.plugin.fractional</id>
+    <name><![CDATA[分数线]]></name>
+    <active>yes</active>
+    <version>1.0</version>
+    <env-version>8.0</env-version>
+    <jartime>2016-03-20</jartime>
+    <vendor>fanruan.richie</vendor>
+    <description><![CDATA[分数线]]></description>
+    <change-notes><![CDATA[
+
+    ]]></change-notes>
+    <extra-designer>
+        <PresentKindProvider class="com.fr.plugin.fractional.FractionalPresentKind"/>
+    </extra-designer>
+</plugin>
