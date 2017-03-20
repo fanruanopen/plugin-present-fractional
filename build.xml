@@ -7,7 +7,6 @@
     <property name="publicLibs" value=""/>
     <property name="destLoc" value="."/>
     <property name="classes" value="classes"/>
-
     <xmlproperty file="${basedir}/plugin.xml"/>
     <property name="current-version" value="${plugin.version}"/>
 
@@ -93,6 +92,22 @@
         </antcall>
         <delete dir="${classes}"/>
 
+    </target>
+    <target name="jar-obfuse" depends="super_jar">
+        <taskdef name="yguard" classname="com.yworks.yguard.YGuardTask" classpath="yguard.jar"/>
+        <yguard>
+            <inoutpair in="${plugin-jar}" out="${plugin-jar}"/>
+            <obfuscate>
+                <expose>
+                    <class classes="protected" methods="protected"
+                           fields="protected">
+                        <patternset>
+                            <include name="com.fr.plugin.export.xml."/>
+                        </patternset>
+                    </class>
+                </expose>
+            </obfuscate>
+        </yguard>
     </target>
     <target name="jar" depends="super_jar">
         <antcall target="zip"/>
