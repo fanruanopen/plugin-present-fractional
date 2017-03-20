@@ -8,7 +8,6 @@
     <vendor>fanruan.richie</vendor>
     <description><![CDATA[分数线]]></description>
     <change-notes><![CDATA[
-
     ]]></change-notes>
     <extra-designer>
         <PresentKindProvider class="com.fr.plugin.fractional.FractionalPresentKind"/>
