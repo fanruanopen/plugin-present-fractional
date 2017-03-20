@@ -39,7 +39,7 @@ public class FractionalPresentPane extends FurtherBasicBeanPane<FractionalPresen
 
     @Override
     public String title4PopupWindow() {
-        return "Fractional";
+        return "分数线";
     }
 
     @Override
