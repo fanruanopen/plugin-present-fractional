@@ -5,6 +5,7 @@ import com.fr.general.GeneralUtils;
 import com.fr.general.xml.GeneralXMLTools;
 import com.fr.script.Calculator;
 import com.fr.stable.ColumnRow;
+import com.fr.stable.StringUtils;
 import com.fr.stable.xml.XMLPrintWriter;
 import com.fr.stable.xml.XMLableReader;
 
@@ -46,6 +47,10 @@ public class FractionalPresent extends AbstractPresent {
 
     @Override
     public Object present(Object value, Calculator calculator, ColumnRow cr) {
-        return new FractionalPainter(attr, GeneralUtils.objectToString(value));
+        String text = GeneralUtils.objectToString(value);
+        if (StringUtils.isEmpty(text)) {
+            text = FractionalAttr.EMPTY_STRING_HOLDER;
+        }
+        return new FractionalPainter(attr, text);
     }
 }

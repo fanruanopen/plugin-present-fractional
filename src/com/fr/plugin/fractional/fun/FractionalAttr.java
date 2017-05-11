@@ -11,10 +11,13 @@ public class FractionalAttr implements XMLable {
 
     public static final String XML_TAG = "FractionalAttr";
 
+    public static final String EMPTY_STRING_HOLDER = "__EMPTY__";
+
     private Weight weight = Weight.MEDIUM;
     private Position position = Position.BOTTOM;
     private double hgap = 5;
     private double vgap = 0.5;
+    private boolean alwaysShow = true;
 
 
     public FractionalAttr() {
@@ -53,6 +56,14 @@ public class FractionalAttr implements XMLable {
         this.vgap = vgap;
     }
 
+    public boolean isAlwaysShow() {
+        return alwaysShow;
+    }
+
+    public void setAlwaysShow(boolean alwaysShow) {
+        this.alwaysShow = alwaysShow;
+    }
+
     @Override
     public void readXML(XMLableReader reader) {
         if (reader.isChildNode()) {
@@ -62,6 +73,7 @@ public class FractionalAttr implements XMLable {
                 position = Position.parse(reader.getAttrAsInt("position", 0));
                 hgap = reader.getAttrAsDouble("hgap", 5);
                 vgap = reader.getAttrAsDouble("vgap", 0.5);
+                alwaysShow = reader.getAttrAsBoolean("alwaysShow", true);
             }
         }
     }
@@ -73,6 +85,7 @@ public class FractionalAttr implements XMLable {
         writer.attr("position", position.toInt());
         writer.attr("hgap", hgap);
         writer.attr("vgap", vgap);
+        writer.attr("alwaysShow", alwaysShow);
         writer.end();
     }
 
@@ -83,6 +96,7 @@ public class FractionalAttr implements XMLable {
         cloned.position = position;
         cloned.hgap = hgap;
         cloned.vgap = vgap;
+        cloned.alwaysShow = alwaysShow;
         return cloned;
     }
 }

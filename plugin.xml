@@ -2,13 +2,13 @@
     <id>com.fr.plugin.fractional</id>
     <name><![CDATA[分数线]]></name>
     <active>yes</active>
-    <version>1.0</version>
+    <version>1.1</version>
     <env-version>8.0</env-version>
     <jartime>2016-03-20</jartime>
     <vendor>fanruan.richie</vendor>
     <description><![CDATA[分数线]]></description>
     <change-notes><![CDATA[
-
+        [2017-05-11]增加分子分母为空时也显示分数线的功能。<br/>
     ]]></change-notes>
     <extra-designer>
         <PresentKindProvider class="com.fr.plugin.fractional.FractionalPresentKind"/>
