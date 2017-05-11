@@ -45,4 +45,6 @@ $installDir/WebReport/WEB-INF/lib/fr-third-8.0.jar
 
 ![4](screenshots/4.png)
 
+分子分母都为空的时候，依然显示分数线。
+
 
