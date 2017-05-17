@@ -47,9 +47,12 @@ public class FractionalPresent extends AbstractPresent {
 
     @Override
     public Object present(Object value, Calculator calculator, ColumnRow cr) {
+        if (cr.getColumn() == 3 && cr.getRow() == 10) {
+            System.out.println(value);
+        }
         String text = GeneralUtils.objectToString(value);
         if (StringUtils.isBlank(text)) {
-            attr.setEmptyText(true);
+           System.out.println(text);
         }
         return new FractionalPainter(attr, text);
     }

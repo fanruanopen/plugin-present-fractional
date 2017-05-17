@@ -125,7 +125,7 @@ public class FractionalGraphHelper {
      *            should be rendered.
      */
     public static void drawString(Graphics g, FractionalAttr attr, String str, int w, int h, double x, double y) {
-        if (StringUtils.isBlank(str)) {
+        if (StringUtils.isBlank(str) && !attr.isAlwaysShow()) {
             return;
         }
         if (g.getFont() instanceof FRFont) {
@@ -187,7 +187,7 @@ public class FractionalGraphHelper {
      *            should be rendered.
      */
     private static void drawNormalString(Graphics g, FractionalAttr attr, String str, double x, double y) {
-        if (StringUtils.isEmpty(str) || attr.isEmptyText()) {
+        if (StringUtils.isEmpty(str)) {
             return;
         }
         Font font = initFont(g);

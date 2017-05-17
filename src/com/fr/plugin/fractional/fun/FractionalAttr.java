@@ -11,8 +11,6 @@ public class FractionalAttr implements XMLable {
 
     public static final String XML_TAG = "FractionalAttr";
 
-    public static final String EMPTY_STRING_HOLDER = "__EMPTY__";
-
     private Weight weight = Weight.MEDIUM;
     private Position position = Position.BOTTOM;
     private double hgap = 5;

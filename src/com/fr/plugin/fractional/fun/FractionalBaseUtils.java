@@ -3,7 +3,6 @@ package com.fr.plugin.fractional.fun;
 import com.fr.base.FRContext;
 import com.fr.base.FRCoreContext;
 import com.fr.base.Style;
-import com.fr.base.Utils;
 import com.fr.general.ComparatorUtils;
 import com.fr.general.FRFont;
 import com.fr.general.Inter;
@@ -18,7 +17,6 @@ import com.fr.stable.unit.PT;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Dimension2D;
-import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -156,6 +154,7 @@ public class FractionalBaseUtils {
         java.util.List lineTextList = FractionalBaseUtils.getLineTextList(text, style, rfont, height, width, resolution);
 
         if (width <= 0 || lineTextList.isEmpty()) {
+            FractionalGraphHelper.drawString(g2d, attr, StringUtils.EMPTY, width, height, 0, 0);
             return;
         }
 
