@@ -151,10 +151,10 @@ public class FractionalGraphHelper {
             if (frFont.isShadow()) {
                 Color color = g.getColor();
                 g.setColor(color.brighter());
-                FractionalGraphHelper.drawNormalString(g, str, x + 1, y + 1);
+                FractionalGraphHelper.drawNormalString(g, attr, str, x + 1, y + 1);
                 g.setColor(color);
             }
-            FractionalGraphHelper.drawNormalString(g, str, x, y);//draw string.
+            FractionalGraphHelper.drawNormalString(g, attr, str, x, y);//draw string.
             if (frFont.getUnderline() != Constants.LINE_NONE) {
                 double hgap = attr.getHgap();
                 double vgap = attr.getVgap();
@@ -174,7 +174,7 @@ public class FractionalGraphHelper {
                 FractionalGraphHelper.drawLine(g, x, mid, x + fm.stringWidth(str), mid, Constants.LINE_THIN);
             }
         } else {
-            FractionalGraphHelper.drawNormalString(g, str, x, y);
+            FractionalGraphHelper.drawNormalString(g, attr, str, x, y);
         }
     }
 
@@ -186,8 +186,8 @@ public class FractionalGraphHelper {
      * @param y   the X coordinates.
      *            should be rendered.
      */
-    private static void drawNormalString(Graphics g, String str, double x, double y) {
-        if (StringUtils.isEmpty(str) || FractionalAttr.EMPTY_STRING_HOLDER.equals(str)) {
+    private static void drawNormalString(Graphics g, FractionalAttr attr, String str, double x, double y) {
+        if (StringUtils.isEmpty(str) || attr.isEmptyText()) {
             return;
         }
         Font font = initFont(g);

@@ -18,10 +18,15 @@ public class FractionalAttr implements XMLable {
     private double hgap = 5;
     private double vgap = 0.5;
     private boolean alwaysShow = true;
+    private boolean emptyText = false;
 
 
     public FractionalAttr() {
+        this(false);
+    }
 
+    public FractionalAttr(boolean emptyText) {
+        this.emptyText = emptyText;
     }
 
     public void setPosition(Position position) {
@@ -62,6 +67,14 @@ public class FractionalAttr implements XMLable {
 
     public void setAlwaysShow(boolean alwaysShow) {
         this.alwaysShow = alwaysShow;
+    }
+
+    public boolean isEmptyText() {
+        return emptyText;
+    }
+
+    public void setEmptyText(boolean emptyText) {
+        this.emptyText = emptyText;
     }
 
     @Override
